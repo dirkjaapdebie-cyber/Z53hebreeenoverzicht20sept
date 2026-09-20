@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hebreeën | Max Lucado Experience</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0f172a;
+            --card-bg: #1e293b;
+            --card-border: #334155;
+            --accent-purple: #a855f7;
+            --accent-pink: #ec4899;
+            --accent-cyan: #06b6d4;
+            --accent-gold: #f59e0b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            padding: 20px 12px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Hero Header */
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(6, 182, 212, 0.2));
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            background: linear-gradient(to right, #c084fc, #38bdf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        /* User Identity Bar */
+        .user-bar {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 15px 20px;
+            border-radius: 16px;
+            margin-bottom: 30px;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .user-bar input {
+            flex: 1;
+            background: #0f172a;
+            border: 1px solid var(--card-border);
+            color: #fff;
+            padding: 12px 16px;
+            border-radius: 10px;
+            font-family: inherit;
+        }
+
+        .user-bar button {
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+            border: none;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .user-bar button:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Timeline & Chapters */
+        .timeline {
+            position: relative;
+            padding-left: 20px;
+            border-left: 3px solid var(--card-border);
+            margin-left: 10px;
+        }
+
+        .chapter-card {
+            position: relative;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 18px;
+            padding: 24px;
+            margin-bottom: 35px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+            transition: border-color 0.3s;
+        }
+
+        .chapter-card::before {
+            content: '';
+            position: absolute;
+            left: -33px;
+            top: 28px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--accent-purple);
+            border: 3px solid var(--bg);
+            box-shadow: 0 0 10px var(--accent-purple);
+        }
+
+        .chapter-card.special-h2::before {
+            background: var(--accent-gold);
+            box-shadow: 0 0 10px var(--accent-gold);
+        }
+
+        .chapter-card.special-h6::before {
+            background: var(--accent-cyan);
+            box-shadow: 0 0 10px var(--accent-cyan);
+        }
+
+        .chapter-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .chapter-title {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .badge {
+            font-size: 0.75rem;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-purple { background: rgba(168, 85, 247, 0.2); color: #c084fc; border: 1px solid #a855f7; }
+        .badge-gold { background: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1px solid #f59e0b; }
+        .badge-cyan { background: rgba(6, 182, 212, 0.2); color: #22d3ee; border: 1px solid #06b6d4; }
+
+        .content-box {
+            background: rgba(15, 23, 42, 0.6);
+            padding: 16px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .content-box p {
+            color: #cbd5e1;
+            font-size: 0.95rem;
+        }
+
+        .connection-tag {
+            display: inline-block;
+            background: rgba(236, 72, 153, 0.15);
+            border-left: 3px solid var(--accent-pink);
+            color: #f472b6;
+            padding: 10px 14px;
+            border-radius: 0 10px 10px 0;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        /* Live Feed & Invoer */
+        .interactive-zone {
+            background: #0f172a;
+            border-radius: 14px;
+            padding: 16px;
+            border: 1px solid var(--card-border);
+        }
+
+        .interactive-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #10b981;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #10b981;
+            animation: pulse 1.8s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.3; }
+            100% { opacity: 1; }
+        }
+
+        textarea {
+            width: 100%;
+            background: #1e293b;
+            border: 1px solid var(--card-border);
+            color: #fff;
+            padding: 12px;
+            border-radius: 10px;
+            font-family: inherit;
+            resize: vertical;
+            min-height: 60px;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--accent-purple);
+        }
+
+        .btn-post {
+            background: var(--card-border);
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+
+        .btn-post:hover {
+            background: var(--accent-purple);
+            box-shadow: 0 0 10px rgba(168, 85, 247, 0.4);
+        }
+
+        .feed-box {
+            margin-top: 12px;
+            max-height: 180px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .feed-pill {
+            background: #1e293b;
+            padding: 10px 12px;
+            border-radius: 8px;
+            border-left: 2px solid var(--accent-cyan);
+            font-size: 0.85rem;
+        }
+
+        .feed-pill .author {
+            font-weight: 700;
+            color: var(--accent-cyan);
+            margin-right: 6px;
+        }
+
+        .feed-pill .time {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            float: right;
+        }
+
+        .special-module-box {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), transparent);
+            border: 1px dashed var(--accent-gold);
+            padding: 14px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            font-size: 0.85rem;
+            color: #fde68a;
+        }
+    </style>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, collection, addDoc, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { getDatabase, ref as dbRef, push, onChildAdded } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+
+        // Configuraties uit beide broncodes
+        const configCode1 = {
+            apiKey: "AIzaSyCcC2ZvkbWDuXLWSGmCpM2wfBnm65UYrbQ",
+            authDomain: "z53bijbelstudie.firebaseapp.com",
+            projectId: "z53bijbelstudie",
+            storageBucket: "z53bijbelstudie.firebasestorage.app",
+            messagingSenderId: "86708654444",
+            appId: "1:86708654444:web:729295ba18f564b841a349"
+        };
+
+        const configCode2 = {
+            apiKey: "AIzaSyBC3Dzm8PNPXw12VJNimvly5u2I93QeW54",
+            authDomain: "schatgravers15maart2026.firebaseapp.com",
+            databaseURL: "https://schatgravers15maart2026-default-rtdb.europe-west1.firebasedatabase.app",
+            projectId: "schatgravers15maart2026",
+            storageBucket: "schatgravers15maart2026.firebasestorage.app",
+            messagingSenderId: "30561512857",
+            appId: "1:30561512857:web:fcb7868b87d292d1c97708"
+        };
+
+        const app1 = initializeApp(configCode1, "app1");
+        const db1 = getFirestore(app1);
+
+        const app2 = initializeApp(configCode2, "app2");
+        const db2 = getDatabase(app2);
+
+        window.db1 = db1;
+        window.db2 = db2;
+        window.userName = "Anoniem";
+
+        window.saveUser = function() {
+            const val = document.getElementById("username-input").value.trim();
+            if(val) {
+                window.userName = val;
+                alert("Welkom " + window.userName + "! Je aantekeningen worden nu live gedeeld.");
+            }
+        };
+
+        window.sendNote = async function(chId) {
+            const input = document.getElementById(`input-ch-${chId}`);
+            const text = input.value.trim();
+            if (!text) return;
+
+            const noteData = {
+                chapter: chId,
+                user: window.userName,
+                text: text,
+                timestamp: Date.now()
+            };
+
+            if (chId === 2) {
+                // Code 1 Database (Firestore)
+                await addDoc(collection(db1, "chapter_notes"), noteData);
+            } else {
+                // Code 2 Database (Realtime DB)
+                const notesRef = dbRef(db2, `chapter_notes/ch_${chId}`);
+                push(notesRef, noteData);
+            }
+
+            input.value = ""; 
+        };
+
+        window.addEventListener('DOMContentLoaded', () => {
+            // Firestore Luisteraar voor H2 (Code 1)
+            const q2 = query(collection(db1, "chapter_notes"), orderBy("timestamp", "desc"));
+            onSnapshot(q2, (snapshot) => {
+                const feed = document.getElementById("feed-ch-2");
+                if(!feed) return;
+                feed.innerHTML = "";
+                snapshot.docs.forEach(doc => {
+                    const d = doc.data();
+                    if(d.chapter === 2) appendFeedItem(feed, d);
+                });
+            });
+
+            // Realtime DB Luisteraars voor overige hoofdstukken (Code 2)
+            const chapters = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+            chapters.forEach(chId => {
+                const notesRef = dbRef(db2, `chapter_notes/ch_${chId}`);
+                onChildAdded(notesRef, (snapshot) => {
+                    const feed = document.getElementById(`feed-ch-${chId}`);
+                    const d = snapshot.val();
+                    if (feed) {
+                        const exists = feed.querySelector(`[data-key="${snapshot.key}"]`);
+                        if (!exists) {
+                            const el = createFeedPill(d);
+                            el.dataset.key = snapshot.key;
+                            feed.prepend(el);
+                        }
+                    }
+                });
+            });
+        });
+
+        function createFeedPill(d) {
+            const timeStr = new Date(d.timestamp).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+            const div = document.createElement("div");
+            div.className = "feed-pill";
+            div.innerHTML = `<span class="time">${timeStr}</span><span class="author">${d.user}:</span> ${d.text}`;
+            return div;
+        }
+
+        function appendFeedItem(container, d) {
+            container.appendChild(createFeedPill(d));
+        }
+    </script>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>MAX LUCADO: HEBREEËN</h1>
+        <p>Interactief overzicht & verbanden op MBO-3 niveau</p>
+    </header>
+
+    <div class="user-bar">
+        <input type="text" id="username-input" placeholder="Vul je naam in voor live interactie...">
+        <button onclick="saveUser()">Starten</button>
+    </div>
+
+    <div class="timeline">
+
+        <!-- HOOFDSTUK 1 -->
+        <div class="chapter-card">
+            <div class="chapter-header">
+                <div class="chapter-title">01. Jezus is de Nummer 1</div>
+                <span class="badge badge-purple">Basis</span>
+            </div>
+            <div class="content-box">
+                <p><strong>Inhoud:</strong> God sprak vroeger via profeten en engelen, maar nu spreekt Hij rechtstreeks via Zijn Zoon Jezus. Jezus is veel belangrijker en machtiger dan welke engel dan ook.</p>
+            </div>
+            <div class="connection-tag">
+                <strong>Verband:</strong> Dit is het fundament. Voordat Lucado uitlegt <em>hoe</em> je moet geloven, maakt hij eerst duidelijk <em>wie</em> Jezus is: de allerhoogste baas.
+            </div>
+            <div class="interactive-zone">
+                <div class="interactive-header"><span class="pulse-dot"></span> Live Aantekeningen & Feed</div>
+                <textarea id="input-ch-1" placeholder="Deel jouw gedachte over Hoofdstuk 1..."></textarea>
+                <button class="btn-post" onclick="sendNote(1)">Verstuur</button>
+                <div class="feed-box" id="feed-ch-1"></div>
+            </div>
+        </div>
+
+        <!-- HOOFDSTUK 2 (Code 1 Module Integratie) -->
+        <div class="chapter-card special-h2">
+            <div class="chapter-header">
+                <div class="chapter-title">02. Blijf bij de les en laat je niet afdrijven</div>
+                <span class="badge badge-gold">Firestore DB (Code 1)</span>
+            </div>
+            <div class="content-box">
+                <p><strong>Inhoud:</strong> Pas op dat je niet langzaam wegdrijft van het geloof. Jezus werd een echt mens van vlees en bloed. Omdat Hij het menselijk lijden zelf kent, kan Hij ons redden van de angst voor de dood.</p>
+            </div>
+            <div class="connection-tag">
+                <strong>Verband:</strong> Omdat Jezus groter is dan engelen (H1), moet je extra goed naar Hem luisteren. Omdat Hij mens werd, staat Hij heel dicht bij jou.
+            </div>
+            
+            <div class="special-module-box">
+                <strong>Module Uit Code 1:</strong> "Laat je hart niet verharden zoals in de woestijn." Maak keuzes om een 'binnentreder' van Gods rust te zijn in plaats van een dwalende woestijnganger.
+            </div>
+
+            <div class="interactive-zone">
+                <div class="interactive-header"><span class="pulse-dot"></span> Live Aantekeningen & Feed</div>
+                <textarea id="input-ch-2" placeholder="Deel jouw gedachte over Hoofdstuk 2..."></textarea>
+                <button class="btn-post" onclick="sendNote(2)">Verstuur</button>
+                <div class="feed-box" id="feed-ch-2"></div>
+            </div>
+        </div>
+
+        <!-- HOOFDSTUK 3 -->
+        <div class="chapter-card">
+            <div class="chapter-header">
+                <div class="chapter-title">03. Jezus is groter dan Mozes</div>
+                <span class="badge badge-purple">Vergelijking</span>
+            </div>
+            <div class="content-box">
+                <p><strong>Inhoud:</strong> Mozes was een grote leider in de geschiedenis, maar hij was een dienaar in Gods huis. Jezus is de Zoon die de leiding heeft over het hele huis.</p>
+            </div>
+            <div class="connection-tag">
+                <strong>Verband:</strong> De lezers keken erg op tegen oude helden zoals Mozes. Lucado laat zien dat Jezus boven al die menselijke leiders staat (voortbouwend op H1 en H2).
+            </div>
+            <div class="interactive-zone">
+                <div class="interactive-header"><span class="pulse-dot"></span> Live Aantekeningen & Feed</div>
+                <textarea id="input-ch-3" placeholder="Deel jouw gedachte over Hoofdstuk 3..."></textarea>
+                <button class="btn-post" onclick="sendNote(3)">Verstuur</button>
+                <div class="feed-box" id="feed-ch-3"></div>
+            </div>
+        </div>
+
+        <!-- HOOFDSTUK 4 -->
+        <div class="chapter-card">
+            <div class="chapter-header">
+                <div class="chapter-title">04. Vind echte rust voor je ziel</div>
+                <span class="badge badge-purple">Bemoediging</span>
+            </div>
+            <div class="content-box">
+                <p><strong>Inhoud:</strong> God biedt een diepe, geestelijke rust aan. Het volk van Mozes miste die rust vroeger door twijfel. Je mag nu zonder angst bij God komen, want Jezus kent jouw zwakheden.</p>
+            </div>
+            <div class="connection-tag">
+                <strong>Verband:</strong> Als je naar Jezus luistert (H3) en Hem vertrouwt, kom je in de rust die de mensen in de tijd van Mozes misliepen.
+            </div>
+            <div class="interactive-zone">
+                <div class="interactive-header"><span class="pulse-dot"></span> Live Aantekeningen & Feed</div>
+                <textarea id="input-ch-4" placeholder="Deel jouw gedachte over Hoofdstuk 4..."></textarea>
+                <button class="btn-post" onclick="sendNote(4)">Verstuur</button>
+                <div class="feed-box" id="feed-ch-4"></div>
+            </div>
+        </div>
+
+        <!-- HOOFDSTUK 5 -->
+        <div class="chapter-card">
+            <div class="chapter-header">
+                <div class="chapter-title">05. Jezus begrijpt hoe jij je voelt</div>
+                <span class="badge badge-purple">Priesterschap</span>
+            </div>
+            <div class="content-box">
+                <p><strong>Inhoud:</strong> Een priester is een tussenpersoon tussen God en mensen. Jezus is de ultieme Priester. Hij weet wat pijn, twijfel en verdriet zijn, omdat Hij dit als mens zelf heeft meegemaakt.</p>
+            </div>
+            <div class="connection-tag">
+                <strong>Verband:</strong> Omdat Jezus onze zwakheden begrijpt (H4), legt Lucado hier uit waarom Jezus de perfecte vertrouwenspersoon bij God is.
+            </div>
+            <div class="interactive-zone">
+                <div class="interactive-header"><span class="pulse-dot"></span> Live Aantekeningen & Feed</div>
+                <textarea id="input-ch-5" placeholder="Deel jouw gedachte over Hoofdstuk 5..."></textarea>
+                <button class="btn-post" onclick="sendNote(5)">Verstuur</button>
+                <div class="feed-box" id="feed-ch-5"></div>
+            </div>
+        </div>
+
+        <!-- HOOFDSTUK 6 (Code 2 Integratie) -->
+        <div class="chapter-card special-h6">
+            <div class="chapter-header">
+                <div class="chapter-title">06. Tijd om volwassen te worden</div>
+                <span class="badge badge-cyan">Realtime DB (Code 2)</span>
+            </div>
+            <div class="content-box">
+                <p><strong>Inhoud:</strong> Blijf niet eeuwig op het niveau van een beginner steken. Het is tijd om te groeien in je geloof. Gods beloftes staan rotsvast, dus je hebt een stevig anker.</p>
+            </div>
+            <div class="connection-tag">
+                <strong>Verband:</strong> Nu je weet wie Jezus is en dat Hij je begrijpt (H5), moet je niet stil blijven staan. Tijd voor de volgende stap.
+            </div>
+
+            <div class="special-module-box" style="border-color: var(--accent-cyan); color: #a5f3fc;">
+                <strong>Sleuteltekst uit Code 2:</strong> "Deze hoop hebben wij als een anker voor de ziel, dat vast en onwrikbaar is..." (Hebreeën 6:19)
+            </div>
+
+            <div class="interactive-zone">
+                <div class="interactive-header"><span class="pulse-dot"></span> Live Aantekeningen & Feed</div>
+                <textarea id="input-ch-6" placeholder="Deel jouw gedachte over Hoofdstuk 6..."></textarea>
+                <button class="btn-post" onclick="sendNote(6)">Verstuur</button>
+                <div class="feed-box" id="feed-ch-6"></div>
+            </div>
+        </div>
+
+        <!-- HOOFDSTUK 7 -->
+        <div class="chapter-card">
+            <div class="chapter-header">
+                <div class="chapter-title">07. Een Priester die voor altijd blijft</div>
+                <span class="badge badge-purple">Eeuwigheid</span>
+            </div>
+            <div class="content-box">
+                <p><strong>Inhoud:</strong> Oude priesters gingen dood en moesten steeds vervangen worden. Jezus blijft voor altijd leven. Hij is een priester van een heel ander, hoger niveau (zoals Melchizedek).</p>
+            </div>
+            <div class="connection-tag">
+                <strong>Verband:</strong> Dit werkt het idee uit Hoofdstuk 5 verder uit: Jezus is niet zomaar een tijdelijke helper, maar een redder voor eeuwig.
+            </div>
+            <div class="interactive-zone">
+                <div class="interactive-header"><span class="pulse-dot"></span> Live Aantekeningen & Feed</div>
+                <textarea id="input-ch-7" placeholder="Deel jouw gedachte over Hoofdstuk 7..."></textarea>
+                <button class="btn-post" onclick="sendNote(7)">Verstuur</button>
+                <div class="feed-box" id="feed-ch-7"></div>
+            </div>
+        </div>
+
+        <!-- HOOFDSTUK 8 -->
+        <div class="chapter-card">
+            <div class="chapter-header">
+                <div class="chapter-title">08. Een nieuw en beter contract</div>
+                <span class="badge badge-purple">Nieuw Verbond</span>
+            </div>
+            <div class="content-box">
+                <p><strong>Inhoud:</strong> Het Oude Verbond werkte niet goed omdat mensen zich er niet aan hielden. God maakt nu een Nieuw Verbond: Hij schrijft Zijn regels direct in ons hart en vergeeft onze fouten.</p>
+            </div>
+            <div class="connection-tag">
+                <strong>Verband:</strong> Bij een nieuwe, betere Priester (H7) hoort ook een nieuw, beter contract tussen God en de mens.
+            </div>
+            <div class="interactive-zone">
+                <div class="interactive-header"><span class="pulse-dot"></span> Live Aantekeningen & Feed</div>
+                <textarea id="input-ch-8" placeholder="Deel jouw gedachte over Hoofdstuk 8..."></textarea>
+                <button class="btn-post" onclick="sendNote(8)">Verstuur</button>
+                <div class="feed-box" id="feed-ch-8"></div>
+            </div>
+        </div>
+
+        <!-- HOOFDSTUK 9 -->
+        <div class="chapter-card">
+            <div class="chapter-header">
+                <div class="chapter-title">09. Het perfecte offer</div>
+                <span class="badge badge-purple">Verlossing</span>
+            </div>
+            <div class="content-box">
+                <p><strong>Inhoud:</strong> Vroeger moesten mensen steeds opnieuw dieren offeren om schuld af te betalen. Jezus gaf EÉN keer Zijn eigen leven. Dat offer was zo krachtig dat het voor altijd genoeg is.</p>
+            </div>
+            <div class="connection-tag">
+                <strong>Verband:</strong> Het nieuwe contract (H8) werd officieel gemaakt door dit unieke offer van Jezus.
+            </div>
+            <div class="interactive-zone">
+                <div class="interactive-header"><span class="pulse-dot"></span> Live Aantekeningen & Feed</div>
+                <textarea id="input-ch-9" placeholder="Deel jouw gedachte over Hoofdstuk 9..."></textarea>
+                <button class="btn-post" onclick="sendNote(9)">Verstuur</button>
+                <div class="feed-box" id="feed-ch-9"></div>
+            </div>
+        </div>
+
+        <!-- HOOFDSTUK 10 -->
+        <div class="chapter-card">
+            <div class="chapter-header">
+                <div class="chapter-title">10. De weg staat wagenwijd open</div>
+                <span class="badge badge-purple">Vrijmoedigheid</span>
+            </div>
+            <div class="content-box">
+                <p><strong>Inhoud:</strong> Je hoeft niet meer te twijfelen of te vrezen voor God. De weg is vrij. Kom vol zelfvertrouwen bij God, blijf bij de kerk en moedig elkaar aan om vol te houden.</p>
+            </div>
+            <div class="connection-tag">
+                <strong>Verband:</strong> Omdat de schuld definitief is opgeruimd (H9), kun je nu zonder angst leven en samen met anderen sterk staan.
+            </div>
+            <div class="interactive-zone">
+                <div class="interactive-header"><span class="pulse-dot"></span> Live Aantekeningen & Feed</div>
+                <textarea id="input-ch-10" placeholder="Deel jouw gedachte over Hoofdstuk 10..."></textarea>
+                <button class="btn-post" onclick="sendNote(10)">Verstuur</button>
+                <div class="feed-box" id="feed-ch-10"></div>
+            </div>
+        </div>
+
+        <!-- HOOFDSTUK 11 -->
+        <div class="chapter-card">
+            <div class="chapter-header">
+                <div class="chapter-title">11. De Heldengalerij van Geloof</div>
+                <span class="badge badge-purple">Inspiratie</span>
+            </div>
+            <div class="content-box">
+                <p><strong>Inhoud:</strong> Geloof is vertrouwen op God, ook als je de uitkomst nog niet kunt zien. Lucado behandelt bekende Bijbelse figuren (zoals Abraham, Sara en Mozes) die bleven vertrouwen.</p>
+            </div>
+            <div class="connection-tag">
+                <strong>Verband:</strong> Hoofdstuk 10 riep op om vol te houden. Hoofdstuk 11 laat met echte praktijkvoorbeelden zien hoe dat er in het dagelijks leven uitziet.
+            </div>
+            <div class="interactive-zone">
+                <div class="interactive-header"><span class="pulse-dot"></span> Live Aantekeningen & Feed</div>
+                <textarea id="input-ch-11" placeholder="Deel jouw gedachte over Hoofdstuk 11..."></textarea>
+                <button class="btn-post" onclick="sendNote(11)">Verstuur</button>
+                <div class="feed-box" id="feed-ch-11"></div>
+            </div>
+        </div>
+
+        <!-- HOOFDSTUK 12 -->
+        <div class="chapter-card">
+            <div class="chapter-header">
+                <div class="chapter-title">12. Rennen met je ogen op de finish</div>
+                <span class="badge badge-purple">Actie</span>
+            </div>
+            <div class="content-box">
+                <p><strong>Inhoud:</strong> Zie het leven als een marathon. Zorg dat je ballast (zonde en zorgen) kwijtraakt. Kijk niet naar de tribune of naar andere lopers, maar houd je ogen strak gericht op Jezus.</p>
+            </div>
+            <div class="connection-tag">
+                <strong>Verband:</strong> Na al die voorbeelden uit het verleden (H11) ben jij nu aan de beurt om jouw eigen race te rennen.
+            </div>
+            <div class="interactive-zone">
+                <div class="interactive-header"><span class="pulse-dot"></span> Live Aantekeningen & Feed</div>
+                <textarea id="input-ch-12" placeholder="Deel jouw gedachte over Hoofdstuk 12..."></textarea>
+                <button class="btn-post" onclick="sendNote(12)">Verstuur</button>
+                <div class="feed-box" id="feed-ch-12"></div>
+            </div>
+        </div>
+
+        <!-- HOOFDSTUK 13 -->
+        <div class="chapter-card">
+            <div class="chapter-header">
+                <div class="chapter-title">13. Geloven met je handen en voeten</div>
+                <span class="badge badge-purple">Praktijk</span>
+            </div>
+            <div class="content-box">
+                <p><strong>Inhoud:</strong> Praktische tips voor het dagelijks leven: wees gastvrij, help mensen die het moeilijk hebben, wees tevreden met wat je hebt en respecteer je leiders.</p>
+            </div>
+            <div class="connection-tag">
+                <strong>Verband:</strong> Als je de marathon van het geloof rennend volhoudt (H12), laat je dat in de praktijk zien door de manier waarop je met anderen omgaat.
+            </div>
+            <div class="interactive-zone">
+                <div class="interactive-header"><span class="pulse-dot"></span> Live Aantekeningen & Feed</div>
+                <textarea id="input-ch-13" placeholder="Deel jouw gedachte over Hoofdstuk 13..."></textarea>
+                <button class="btn-post" onclick="sendNote(13)">Verstuur</button>
+                <div class="feed-box" id="feed-ch-13"></div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>
